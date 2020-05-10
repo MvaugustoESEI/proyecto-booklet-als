@@ -1,0 +1,61 @@
+application: booklet
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+
+- url: /
+  script: handlers.main.app
+  login: required
+
+- url: /libros/listar_usr
+  script: handlers.libros.listar_usr.app
+
+- url: /libros/crear
+  script: handlers.libros.crear.app
+
+- url: /libros/ver
+  script: handlers.libros.ver.app
+
+- url: /libros/editar
+  script: handlers.libros.editar.app
+
+- url: /libros/eliminar
+  script: handlers.libros.eliminar.app
+
+- url: /libros/finalizar
+  script: handlers.libros.finalizar.app
+
+- url: /capitulos/crear
+  script: handlers.capitulos.crear.app
+
+- url: /capitulos/ver
+  script: handlers.capitulos.ver.app
+
+- url: /capitulos/eliminar
+  script: handlers.capitulos.eliminar.app
+
+- url: /capitulos/editar
+  script: handlers.capitulos.editar.app
+
+- url: /seguimiento/seguir
+  script: handlers.seguimiento.seguir.app
+
+- url: /seguimiento/no_seguir
+  script: handlers.seguimiento.no_seguir.app
+
+- url: /seguimiento/listar_usr
+  script: handlers.seguimiento.listar_usr.app
+
+libraries:
+- name: webapp2
+  version: "2.5.2"
+
+- name : jinja2
+  version: "latest"
+

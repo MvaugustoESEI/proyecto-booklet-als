@@ -1,10 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "esqueleto.html" %}
+
+{% block contenido %}
+    <div class="container">
+        <h2>
+            Lista de Seguimiento
+        </h2>
+        <hr>
+        {% if libros|length > 0 %}
+            <table class="table table-striped table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Autor</th>
+                        <th scope="col">Título</th>
+                        <th scope="col">Generos</th>
+                        <th scope="col">Fecha Creación</th>
+                        <th scope="col">Fecha Finalización</th>
+                        <th scope="col">Num. Cap.</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for libro in libros %}
+                        <tr>
+                            <td>{{ libro.autor }}</td>
+                            <td>{{ libro.titulo }}</td>
+                            <td>{{ libro.generos }}</td>
+                            <td>{{ libro.fecha_creacion }}</td>
+                            <td>
+                                {% if libro.fecha_finalizacion %}
+                                    {{ libro.fecha_finalizacion }}
+                                {% else %}
+                                    En proceso...
+                                {% endif %}
+                            </td>
+                            <td>{{ libro.num_capitulos }}</td>
+                            <td style="padding: 0px; font-size: 2em">
+                                <a href="/libros/ver?id={{ libro.key.urlsafe() }}&volver=seguimiento">
+                                    <i class="fa fa-eye fa-3" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <h5>No sigues nigún libro</h5>
+        {% endif %}
+
+    </div>
+{% endblock %}

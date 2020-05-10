@@ -1,10 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "esqueleto.html" %}
+
+{% block contenido %}
+    <div class="container">
+        <h2>Nuevo libro</h2>
+        <hr>
+        <form action="/libros/crear" method="post" onsubmit="return checkFormCrearLibro()">
+            <div class="form-group">
+                <label for="edTituloLibro">Título</label>
+                <input required id="edTituloLibro" name="edTituloLibro" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label for="edGeneros">Género/s</label>
+                <select required multiple class="form-control" id="edGeneros" name="edGeneros">
+                    <option value="FANTASIA">Fantasía</option>
+                    <option value="SCIFI">Ciencia ficción</option>
+                    <option value="MISTERIO">Misterio</option>
+                    <option value="ROMANCE">Romance</option>
+                    <option value="HUMOR">Humor</option>
+                    <option value="HISTORIA">Historia</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="edSinopsis">Sinopsis</label>
+                <textarea required id="edSinopsis"  name="edSinopsis" class="form-control" rows="5"></textarea>
+            </div>
+            <a href="/libros/listar_usr"><i class="fa fa-arrow-left" style="font-size: 2em" aria-hidden="true"></i></a>
+            <button type="submit" class="btn btn-primary mb-2" style="float: right">Guardar</button>
+        </form>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "esqueleto.html" %}
+
+{% block contenido %}
+
+    <div class="container">
+        <h1 style="text-align: center">{{ libro.titulo }}</h1>
+        <h3 style="text-align: center">Capitulo {{ capitulo.num_capitulo }}</h3>
+        <h4 style="text-align: center"><i>{{ capitulo.titulo }}</i></h4>
+        <hr>
+        <div id="textoCapitulo">
+            {% for parrafo in parrafos %}
+                <p>   {{ parrafo }}</p>
+            {% endfor %}
+        </div>
+        <hr>
+        <div>
+        {% if anterior_capitulo_key %}
+            <a title="Anterior capítulo" href="/capitulos/ver?id={{ anterior_capitulo_key }}&volver={{ volver }}"><i class="fa fa-chevron-left" style="font-size: 2em" aria-hidden="true"></i></a>
+        {% endif %}
+        {% if siguiente_capitulo_key %}
+            <a title="Siguiente capítulo" href="/capitulos/ver?id={{ siguiente_capitulo_key }}&volver={{ volver }}" style="position: relative; left: 96%"><i class="fa fa-chevron-right" style="font-size: 2em;" aria-hidden="true"></i></a>
+        {% endif %}
+        </div>
+        <hr>
+        <a title="Volver a la vista del libro" href="/libros/ver?id={{ libro.key.urlsafe() }}&volver={{ volver }}"><i class="fa fa-arrow-left" style="font-size: 2em" aria-hidden="true"></i></a>
+    </div>
+{% endblock %}
