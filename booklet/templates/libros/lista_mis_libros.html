@@ -43,10 +43,12 @@
                                 <a href="/libros/eliminar?id={{ libro.key.urlsafe() }}" onclick="return confirm('¿Seguro que quieres eliminar {{ libro.titulo }}?')">
                                     <i class="fa fa-trash fa-3" aria-hidden="true"></i>
                                 </a>
-                                |
-                                <a title="Terminar libro" href="/libros/finalizar?id={{ libro.key.urlsafe() }}&volver=user" onclick="return confirm('¿Seguro que quieres terminar {{ libro.titulo }}? Esta acción no se puede deshacer ')">
-                                    <i class="fa fa-check-circle-o" aria-hidden="true"></i>
-                                </a>
+                                {% if not libro.fecha_finalizacion %}
+                                    |
+                                    <a title="Terminar libro" href="/libros/finalizar?id={{ libro.key.urlsafe() }}&volver=user" onclick="return confirm('¿Seguro que quieres terminar {{ libro.titulo }}? Esta acción no se puede deshacer ')">
+                                        <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                                    </a>
+                                {% endif %}
                             </td>
                         </tr>
                     {% endfor %}

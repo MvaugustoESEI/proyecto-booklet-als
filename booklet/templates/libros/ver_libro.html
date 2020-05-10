@@ -93,12 +93,14 @@
                                 <a href="/capitulos/ver?id={{ capitulo.key.urlsafe() }}&volver={{ volver }}">
                                     <i class="fa fa-eye fa-3" aria-hidden="true"></i>
                                 </a>
-                                <a href="/capitulos/editar?id={{ capitulo.key.urlsafe() }}&volver={{ volver }}">
-                                    <i class="fa fa-pencil fa-3" aria-hidden="true"></i>
-                                </a>
-                                <a href="/capitulos/eliminar?id={{ capitulo.key.urlsafe() }}&volver={{ volver }}" onclick="return confirm('¿Seguro de que quieres eliminar {{ capitulo.titulo }}?')">
-                                    <i class="fa fa-trash fa-3" aria-hidden="true"></i>
-                                </a>
+                                {% if not libro.fecha_finalizacion and libro.autor == usr_email %}
+                                    <a href="/capitulos/editar?id={{ capitulo.key.urlsafe() }}&volver={{ volver }}">
+                                        <i class="fa fa-pencil fa-3" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="/capitulos/eliminar?id={{ capitulo.key.urlsafe() }}&volver={{ volver }}" onclick="return confirm('¿Seguro de que quieres eliminar {{ capitulo.titulo }}?')">
+                                        <i class="fa fa-trash fa-3" aria-hidden="true"></i>
+                                    </a>
+                                {% endif %}
                             </td>
                         </tr>
                     {% endfor %}
